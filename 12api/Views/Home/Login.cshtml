@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="~/Content/register.css">
+    </br>
+    </br>
+    </br>
+    </br>
+<div class="signup__container">
+    <div class="container__child signup__thumbnail">
+        <div class="thumbnail__logo">
+            <h1 class="logo__text">Team VSAP</h1>
+        </div>
+        <div class="thumbnail__content text-center">
+            <h1 class="heading--primary">Welcome to after12.</h1>
+            <h2 class="heading--secondary">Are you ready to rock the night?</h2>
+        </div>
+        <div class="signup__overlay"></div>
+    </div>
+    <div class="container__child signup__form">
+        <form action="#">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" type="text" name="email" id="email" placeholder="james.bond@spectre.com" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="********" required />
+            </div>
+            <div class="m-t-lg">
+                <ul class="list-inline">
+                    <li>
+                        <input class="btn btn--form" type="submit" value="Login" onclick="login()" />
+                    </li>
+                    <li>
+                        <a class="signup__link" href="register.html">Wanna Register?</a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function login(){
+        var formData = JSON.stringify($("#myForm").serializeArray());
+        $.ajax({
+          type: "POST",
+          url: "serverUrl",
+          data: formData,
+          success: function(){},
+          dataType: "json",
+          contentType : "application/json"
+        });
+
+    }
+</script>
+

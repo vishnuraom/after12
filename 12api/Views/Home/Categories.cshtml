@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Categories";
+}
+<table class="table table-striped table-hover " id="myTable" style="background-color:white;margin-top: 30px;display: none;">
+    <thead>
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+        </tr>
+    </thead>
+
+</table>
+
+<!--Image background and text-->
+<div class="container wrapper">
+
+</div>
+
+
+<!--footer-->
+<!--<footer class="footer">
+  <p>&copy; Copyright 2017</p>
+</footer>-->
+<!--JavaScript-->
+<script type="text/javascript" src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+          var root = '/api/categories';
+
+          $.ajax({
+            url: root,
+            method: 'GET'
+          }).done(function(data) {
+            $('#myTable').show();
+             var toAppend = '';
+             $.each(data,function(i,o){
+              toAppend += '<tr class="leftrow"><td>'+o.cid+'</td><td class="leftrow">'+o.cname+'</td></tr>' ;
+          });
+          $('#myTable').append(toAppend);
+        });
+    });
+</script>

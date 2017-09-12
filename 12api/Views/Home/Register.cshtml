@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="~/Content/register.css">
+  </br>
+  </br>
+<form class="login">
+    <div class="signup__container">
+        <div class="container__child signup__thumbnail">
+            <div class="thumbnail__logo">
+                <h1 class="logo__text">Team VSAP</h1>
+            </div>
+            <div class="thumbnail__content text-center">
+                <h1 class="heading--primary">Welcome to after12.</h1>
+                <h2 class="heading--secondary">Are you ready to rock the night?</h2>
+            </div>
+            <div class="signup__overlay"></div>
+        </div>
+        <div class="container__child signup__form">
+            <form id="myForm" method="POST">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" type="text" placeholder="james.bond" required />
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input class="form-control" type="text" name="Email" id="Email" placeholder="james.bond@spectre.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input class="form-control" type="password" name="Password" id="Password" placeholder="********" required />
+                </div>
+                <div class="form-group">
+                    <label for="ConfirmPassword">Repeat Password</label>
+                    <input class="form-control" type="password" name="ConfirmPassword" id="ConfirmPassword" placeholder="********" required />
+                </div>
+                <div class="m-t-lg">
+                    <ul class="list-inline">
+                        <li>
+                            <input class="btn btn--form" type="submit" id="regq" value="Register" />
+                        </li>
+                        <li>
+                            <a class="signup__link" href="">I am already a member</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</form>
+
+<h1 id="myTable" style="display: none;">Login Successful!</h1>
+
+
+<!--footer
+<footer class="footer">
+  <p>&copy; Copyright 2017</p>
+</footer>-->
+<!--JavaScript-->
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.serializejson.js"></script>
+
+<script type="text/javascript">
+
+        $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    $(function() {
+        $('form.login').on('submit', function(e) {
+          e.preventDefault();
+
+          var formData = $(this).serializeObject();
+          var root = 'api/Account/Register';
+          $.ajax({
+            url: root,
+            method: 'POST',
+            data:formData,
+            dataType: 'json'
+          }).done(function(data) {
+            $('#myTable').show();
+            alert('Login Successful');
+          });;
+        });
+    });
+
+</script>
+
+

@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Places";
+}
+
+<div style="width:1200px;margin-top:50px;align-content: center;">
+    <!-- Form Name -->
+    <h3 class="col-md-4" style="color: cyan;display: inline">View Places</h3>
+
+    <!-- Select Basic -->
+    <div class="col-md-4" style="color:white;display:inline">
+        <select id="cic" name="selectbasic"></select>
+    </div>
+
+    <!-- Button -->
+    <div class="col-md-4" style="color:white;display:inline">
+        <button id="submit" name="submit" class="btn btn-info">Submit</button>
+    </div>
+</div>
+
+
+<table class="table table-striped table-hover " id="myTable" style="background-color:white;margin-top: 30px;display: none;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+</table>
+
+    </div>
+
+<!--Image background and text-->
+<div class="container wrapper">
+
+</div>
+
+
+
+
+
+<!--footer-->
+<!--<footer class="footer">
+  <p>&copy; Copyright 2017</p>
+</footer>-->
+<!--JavaScript-->
+<script type="text/javascript" src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript">
+
+
+          var root = '/api/categories';
+          $.ajax({
+            url: root,
+            method: 'GET'
+          }).done(function(data) {
+             var toAppend = '';
+             $.each(data,function(i,o){
+              toAppend += '<option value="'+o.cid+'">'+o.cname+'</option>';
+          });
+          $('#cic').append(toAppend);
+        });
+
+
+    $(document).ready(function () {
+
+        $('#submit').click(function() {
+
+          var s = $("#cic").val();
+          var root = '/api/places';
+          $.ajax({
+            url: root+'/'+s,
+            method: 'GET'
+          }).done(function(data) {
+            $('#myTable').empty();
+            $('#myTable').show();
+             var toAppend = '';
+             $.each(data,function(i,o){
+              toAppend += '<tr class="leftrow"><td class="leftrow">'+o.pid+'</td><td class="leftrow">'+o.pname+'</td><td class="leftrow">'+o.pstreet+'</td><td class="leftrow">'+o.city+'</td><td class="leftrow">'+o.pdesc+'</td></tr>';
+          });
+          $('#myTable').append(toAppend);
+        });
+    });
+    });
+</script>
+
+

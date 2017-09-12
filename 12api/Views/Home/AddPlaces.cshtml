@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "AddPlaces";
+}
+
+</br>
+<h1 style="color: cyan;text-align: center;">Add a place :)</h1>
+</br>
+
+<form class="login" style="position: relative;left: 400px;width: 1200px;">
+
+
+
+    <div class="form-group row" style="display: none;">
+        <label for="pid" class="col-2 col-form-label" style="color: white;font-size: 20px">Name</label>
+        <div class="col-2">
+            <input class="form-control" type="text" kale" id="pid" name="pid" value="1">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="cid" class="col-2 col-form-label" style="color: white;font-size: 20px"> Category</label>
+        <div class="col-2">
+            <select class="form-control" id="cid" name="cid"></select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="pname" class="col-2 col-form-label" style="color: white;font-size: 20px">Name</label>
+        <div class="col-2">
+            <input class="form-control" type="text" kale" id="pname" name="pname">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="pstreet" class="col-2 col-form-label" style="color: white;font-size: 20px">Street</label>
+        <div class="col-2">
+            <input class="form-control" type="text" id="pstreet" name="pstreet">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="city" class="col-2 col-form-label" style="color: white;font-size: 20px">City</label>
+        <div class="col-2">
+            <input class="form-control" type="city" value="" id="city" name="city">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="pdesc" class="col-2 col-form-label" style="color: white;font-size: 20px">Description</label>
+        <div class="col-2">
+            <textarea class="form-control" type="text" id="pdesc" name="pdesc"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="submit" class="col-2 col-form-label" style="color: white;font-size: 20px"></label>
+        <div class="col-3">
+            <button id="submit" name="submit" class="btn btn-info">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+<!--Image background and text-->
+<div class="container wrapper">
+
+</div>
+
+
+<!--footer-->
+<!--<footer class="footer">
+  <p>&copy; Copyright 2017</p>
+</footer>-->
+<!--JavaScript-->
+<script type="text/javascript" src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+
+
+
+
+<script type="text/javascript">
+
+
+          var root = '/api/categories';
+          $.ajax({
+            url: root,
+            method: 'GET'
+          }).done(function(data) {
+             var toAppend = '';
+             $.each(data,function(i,o){
+              toAppend += '<option value="'+o.cid+'">'+o.cname+'</option>';
+          });
+          $('#cid').append(toAppend);
+        });
+
+
+
+
+        $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+
+
+    $(function() {
+        $('form.login').on('submit', function(e) {
+          e.preventDefault();
+
+          var formData = $(this).serializeObject();
+          var root = '/api/places';
+          $.ajax({
+            url: root,
+            method: 'POST',
+            data:formData,
+            dataType: 'json',
+            success: function(data){alert("Place Added!");}
+          });
+        });
+    });
+</script>
+

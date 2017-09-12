@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="after12ModelStoreContainer" CdmEntityContainer="after12Entities">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="after12Model.categories">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="places">
+      <EntityTypeMapping TypeName="after12Model.places">
+        <MappingFragment StoreEntitySet="places">
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="pname" ColumnName="pname" />
+          <ScalarProperty Name="pstreet" ColumnName="pstreet" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="pdesc" ColumnName="pdesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reviews">
+      <EntityTypeMapping TypeName="after12Model.reviews">
+        <MappingFragment StoreEntitySet="reviews">
+          <ScalarProperty Name="rid" ColumnName="rid" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="rdesc" ColumnName="rdesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
